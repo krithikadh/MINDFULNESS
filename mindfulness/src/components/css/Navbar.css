@@ -3,6 +3,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     margin: 20;
+    background-color: #deb1a4;
     padding-bottom: 60px;
 }
 
@@ -62,8 +63,4 @@ body {
     .icon {
         font-size: 1.2rem;
     }
-}
-
-p{
-    background-color: #deb1a4;
 }
