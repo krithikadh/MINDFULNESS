@@ -2,8 +2,11 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    margin: 20;
-    background-color: #deb1a4;
+    font-size: 30px;
+    margin: 10;
+    padding-left: 10px;
+    background-color: #db6645;
+    color: #edeee4;
     padding-bottom: 60px;
 }
 
