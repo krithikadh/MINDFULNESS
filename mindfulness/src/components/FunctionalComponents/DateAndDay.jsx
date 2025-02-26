@@ -1,8 +1,7 @@
 import React from "react";
-import "../css/Date.css"; // Import external CSS file
+import "../css/DateAndDay.css";
 
 const DateAndDay = () => {
-  // Get current date details
   const today = new Date();
   const date = today.getDate();
   const month = today.toLocaleString("default", { month: "long" });
