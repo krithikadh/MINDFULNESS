@@ -79,4 +79,14 @@
     transform: scale(1.03);
     box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.4),
                 -5px -5px 12px rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+}
+
+.widget-link {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/DateAndDay.css";
+import { Link } from "react-router-dom";
 
 const DateAndDay = () => {
   const today = new Date();
@@ -18,15 +19,18 @@ const DateAndDay = () => {
       </div>
 
       <div className="widgets">
-        
         <div className="square-widget">
-          <p>Meditation Time</p>
-          <span>20 min</span>
+          <Link to="/meditation" className="widget-link">
+            <p>Meditation Time</p>
+            <span>-</span>
+          </Link>
         </div>
 
         <div className="square-widget">
-          <p>Sleep Time</p>
-          <span>7 hrs</span>
+          <Link to="/sleep" className="widget-link">
+            <p>Sleep Time</p>
+            <span>-</span>
+          </Link>
         </div>
       </div>
     </div>
