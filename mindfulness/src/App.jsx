@@ -1,4 +1,4 @@
-import Date from './components/FunctionalComponents/Date';
+import DateAndDay from './components/FunctionalComponents/DateAndDay';
 import Tip from './components/FunctionalComponents/Tip';
 import Meditation from './components/FunctionalComponents/Meditation';
 import Mood from './components/FunctionalComponents/Mood';
@@ -15,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path='/' element={<Date />} />
+          <Route path='/' element={<DateAndDay />} />
           <Route path='/tip' element={<Tip />} />
           <Route path='/meditation' element={<Meditation />} />
           <Route path='/mood' element={<Mood />} />

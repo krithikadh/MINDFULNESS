@@ -10,8 +10,8 @@ const Navbar = () => {
       <ul className="nav-links">
         <li><Link to="/"><FaCalendarAlt className="icon" /><span>Day</span></Link></li>
         <li><Link to="/meditation"><FaBrain className="icon" /><span>Meditation</span></Link></li>
-        <li><Link to="/mood"><FaSmile className="icon" /><span>Mood</span></Link></li>
         <li><Link to="/sleep"><FaBed className="icon" /><span>Sleep</span></Link></li>
+        <li><Link to="/mood"><FaSmile className="icon" /><span>Mood</span></Link></li>
         <li><Link to="/exercise"><FaDumbbell className="icon" /><span>Exercise</span></Link></li>
         <li><Link to="/journal"><FaBook className="icon" /><span>Journal</span></Link></li>
         <li><Link to="/tip"><FaLightbulb className="icon" /><span>Tip of the Day</span></Link></li>
