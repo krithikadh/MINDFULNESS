@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/Meditation.css";
+import "../css/MeditationAndSleep.css";
 
 const Sleep = () => {
   const [sleepTime, setSleepTime] = useState(0);

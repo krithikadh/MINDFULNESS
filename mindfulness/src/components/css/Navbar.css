@@ -7,7 +7,6 @@ body {
     padding-left: 10px;
     padding-bottom: 60px;
     background-color: #db6645;
-    color: #edeee4;
 }
 
 .bottom-navbar {
@@ -36,7 +35,7 @@ body {
 .nav-links a {
     text-decoration: none;
     color: #9DBF9B;
-    font-size: 0.9rem;
+    font-size: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,13 +45,14 @@ body {
 }
 
 .icon {
-    font-size: 1.5rem;
+    font-size: 25px;
 }
 
 .nav-links a:hover {
     color: #D0D6B5;
 }
 
+/*
 @media (max-width: 768px) {
     .nav-links {
         flex-wrap: wrap;
@@ -67,3 +67,4 @@ body {
         font-size: 1.2rem;
     }
 }
+*/

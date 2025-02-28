@@ -24,7 +24,7 @@ const Journal = () => {
       ></textarea>
 
       <button className="post-button" onClick={handlePost}>
-        Post
+        Save
       </button>
 
       <div className="journal-entries">
