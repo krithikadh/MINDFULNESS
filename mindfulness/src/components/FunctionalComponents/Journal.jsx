@@ -20,7 +20,7 @@ const Journal = () => {
         className="journal-input"
         value={entry}
         onChange={(e) => setEntry(e.target.value)}
-        placeholder="Write here"
+        placeholder="You can make multiple entries"
       ></textarea>
 
       <button className="post-button" onClick={handlePost}>

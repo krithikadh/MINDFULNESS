@@ -32,6 +32,13 @@ const DateAndDay = () => {
             <span>-</span>
           </Link>
         </div>
+
+        <div className="square-widget">
+          <Link to="/mood" className="widget-link">
+            <p>Mood</p>
+            <span>-</span>
+          </Link>
+        </div>
       </div>
     </div>
   );
