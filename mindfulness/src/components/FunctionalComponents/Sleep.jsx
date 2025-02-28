@@ -15,11 +15,14 @@ const Sleep = () => {
   const goalAchieved = sleepTime >= goal;
 
   return (
+    <div className="container">
       <div className="meditation-container">
         <h1>SLEEP TRACKER</h1>
 
         <div className="input-section">
-          <label htmlFor="sleep-input">How many hours did you sleep today?</label>
+          <label htmlFor="sleep-input">
+            How many hours did you sleep today?
+          </label>
           <p className="desc">(minimum 7 hrs/day)</p>
           <input
             id="sleep-input"
@@ -32,10 +35,16 @@ const Sleep = () => {
         </div>
 
         <div className="progress-bar-container">
-        <div className="progress-bar" style={{ width: `${progress}%` }}></div>
-      </div>
+          <div className="progress-bar" style={{ width: `${progress}%` }}></div>
+        </div>
 
-      {goalAchieved && <p className="congrats-text">You had a healthy amount of sleep. Great!</p>}
+        {goalAchieved && (
+          <p className="congrats-text">
+            You had a healthy amount of sleep. Great!
+          </p>
+        )}
+      </div>
+      <button className="post-button">Save</button>
     </div>
   );
 };
