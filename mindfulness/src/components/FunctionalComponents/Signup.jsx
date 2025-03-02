@@ -13,7 +13,7 @@ function Signup() {
   const handleSignup = async (event) => {
     event.preventDefault();
     try {
-      const req = await axios.post("", {
+      const req = await axios.post("https://mindfulness-9lmh.onrender.com/signup", {
         name,
         email,
         password,

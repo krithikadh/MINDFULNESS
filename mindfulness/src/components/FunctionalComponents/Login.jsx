@@ -11,7 +11,7 @@ function Login() {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const req = await axios.post("", { email, password });
+      const req = await axios.post("https://mindfulness-9lmh.onrender.com/login", { email, password });
       alert(req.data.message);
       if (req.data.isLoggedIn) navigate("/");
     } catch (error) {
