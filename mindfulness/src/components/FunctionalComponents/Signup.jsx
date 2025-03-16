@@ -13,14 +13,17 @@ function Signup() {
   const handleSignup = async (event) => {
     event.preventDefault();
     try {
-      const req = await axios.post("https://mindfulness-9lmh.onrender.com/signup", {
-        name,
-        email,
-        password,
-        phoneNumber,
-      });
-      alert(req.data.message);
-      if (req.data.isSignUp) navigate("/login");
+      const res = await axios.post(
+        "https://mindfulness-9lmh.onrender.com/signup",
+        {
+          name,
+          email,
+          password,
+          phoneNumber,
+        }
+      );
+      alert(res.data.message);
+      if (res.data.isSignUp) navigate("/login");
     } catch (error) {
       alert("Signup failed. Please try again.");
     }
@@ -30,37 +33,33 @@ function Signup() {
     <div className="auth-container">
       <h1>Signup</h1>
       <form className="auth-form" onSubmit={handleSignup}>
-        <label htmlFor="name">Full Name:</label>
+        <label>Name:</label>
         <input
           type="text"
-          id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
 
-        <label htmlFor="email">Email:</label>
+        <label>Email:</label>
         <input
           type="email"
-          id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
 
-        <label htmlFor="password">Password:</label>
+        <label>Password:</label>
         <input
           type="password"
-          id="password"
           value={password}
           onChange={(e) => setPass(e.target.value)}
           required
         />
 
-        <label htmlFor="phoneNumber">Phone Number:</label>
+        <label>Phone Number:</label>
         <input
           type="tel"
-          id="phoneNumber"
           value={phoneNumber}
           onChange={(e) => setPN(e.target.value)}
           required

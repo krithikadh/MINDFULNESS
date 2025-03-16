@@ -11,9 +11,9 @@ function Login() {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const req = await axios.post("https://mindfulness-9lmh.onrender.com/login", { email, password });
-      alert(req.data.message);
-      if (req.data.isLoggedIn) navigate("/");
+      const res = await axios.post("https://mindfulness-9lmh.onrender.com/login", { email, password });
+      alert(res.data.message);
+      if (res.data.isLoggedIn) navigate("/");
     } catch (error) {
       alert("Login failed. Please check your credentials.");
     }
@@ -23,30 +23,16 @@ function Login() {
     <div className="auth-container">
       <h1>Login</h1>
       <form className="auth-form" onSubmit={handleLogin}>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        <label>Email:</label>
+        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPass(e.target.value)}
-          required
-        />
+        <label>Password:</label>
+        <input type="password" value={password} onChange={(e) => setPass(e.target.value)} required />
 
         <button type="submit">Login</button>
       </form>
 
-      <p>
-        New User? <Link to="/signup">Signup</Link>
-      </p>
+      <p>New User? <Link to="/signup">Signup</Link></p>
     </div>
   );
 }

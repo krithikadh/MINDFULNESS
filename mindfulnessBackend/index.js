@@ -1,119 +1,83 @@
 const express = require("express");
-const mdb = require("mongoose");
+const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const Signup = require("./models/signupSchema");
+
+dotenv.config();
 const app = express();
+const PORT = process.env.PORT || 3001;
+
 app.use(cors());
 app.use(express.json());
-const PORT = 3001;
-dotenv.config();
-const verifyTok = (req,res,next) =>{
-  console.log("Middleware Check");
-  const token = req.headers.authorization
-  if(!token){
-    res.json("Request Denied")
-  }
-  try{
-    console.log(token)
-    const payload = jwt.verify(token,process.env.SECRET_KEY)
-    console.log(payload.firstname)
-    firstname = payload.firstname
-    next()
-  }
-  catch(err){
-    res.send("Either token is expired/ Token is itself wrong")
-  }
-}
-mdb
-  .connect(process.env.MONGODB_URL) // if it doesn't connect with localhost replace it with 127.0.0.1 ip address
-  .then(() => {
-    console.log("MDB Connection Successful");
-  })
-  .catch((err) => {
-    console.log("Check your connection String", err);
-  });
 
+mongoose.connect(process.env.MONGODB_URL)
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.log("MongoDB Connection Error:", err));
+
+const verifyToken = (req, res, next) => {
+  const token = req.headers.authorization;
+  if (!token) return res.status(403).json({ message: "Access Denied" });
+
+  try {
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    res.status(401).json({ message: "Invalid or Expired Token" });
+  }
+};
+
+// Test route
 app.get("/", (req, res) => {
   res.send("<h1>Welcome to Backend</h1>");
 });
-app.get("/static", verifyTok, (req, res) => {
-  res.sendFile(
-    "D:/MINDFULNESS/index.html"
-  );
-});
 
-app.post("/signups", async (req, res) => {
+// Signup Route
+app.post("/signup", async (req, res) => {
   try {
-    console.log(req.body);
-    const { firstName, lastName, email, password, phoneNumber } = req.body;
+    const { name, email, password, phoneNumber } = req.body;
+
+    const existingUser = await Signup.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "Email already registered!" });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newSignup = new Signup({
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: hashedPassword,
-      phoneNumber: phoneNumber,
-    });
-    newSignup.save();
-    console.log("Signup Successful");
-    res.status(201).json({ message: "Signup Successful", isSignUp: true });
+    const newUser = new Signup({ name, email, password: hashedPassword, phoneNumber });
+    await newUser.save();
+
+    res.status(201).json({ message: "Signup successful!", isSignUp: true });
   } catch (error) {
-    console.log(error);
-    res.status(400).json({ message: "Signup Unsuccessful", isSignUp: false });
+    res.status(500).json({ message: "Signup failed!", error });
   }
 });
 
-app.get("/getsignupdet", verifyTok, async (req, res) => {
-  const signup = await Signup.find();
-  console.log(signup);
-  res.send("Signup details fetched");
-});
-
+// Login Route
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    const existingUser = await Signup.findOne({ email: email });
-    console.log(existingUser);
-    if (existingUser) {
-      const payload = {
-        firstname: existingUser.firstName,
-        email: existingUser.email,
-      };
-      const isValidPassword = await bcrypt.compare(
-        password,
-        existingUser.password
-      );
-      console.log(isValidPassword);
-      if (isValidPassword) {
-        const token = jwt.sign(payload, process.env.SECRET_KEY, {
-          expiresIn: "10m",
-        });
-        res
-          .status(201)
-          .json({
-            message: "Login Successful",
-            isLoggedIn: true,
-            token: token,
-          });
-      } else {
-        res
-          .status(201)
-          .json({ message: "Incorrect Password", isLoggedIn: false });
-      }
-    } else {
-      res
-        .status(201)
-        .json({ message: "User not Found Signup First", isLoggedIn: false });
+    const existingUser = await Signup.findOne({ email });
+
+    if (!existingUser) {
+      return res.status(404).json({ message: "User not found. Please sign up first!" });
     }
+
+    const isValidPassword = await bcrypt.compare(password, existingUser.password);
+    if (!isValidPassword) {
+      return res.status(401).json({ message: "Incorrect password!", isLoggedIn: false });
+    }
+
+    const token = jwt.sign({ name: existingUser.name, email: existingUser.email }, process.env.SECRET_KEY, {
+      expiresIn: "1h",
+    });
+
+    res.json({ message: "Login Successful", isLoggedIn: true, token });
   } catch (error) {
-    console.log("Login Error");
-    res.status(400).json({ message: "Login Error", isLoggedIn: false });
+    res.status(500).json({ message: "Login Error", isLoggedIn: false, error });
   }
 });
 
-app.listen(PORT, () => {
-  console.log("Server Started Successfully");
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
