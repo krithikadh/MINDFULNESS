@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/Mood.css";
 
 const moods = [
@@ -14,12 +14,16 @@ const moods = [
 ];
 
 const Mood = () => {
-  const [selectedMood, setSelectedMood] = useState(null);
+  const [selectedMood, setSelectedMood] = useState(() => {
+    return JSON.parse(localStorage.getItem("selectedMood")) || null;
+  });
 
   const handleMoodChange = (event) => {
     const moodName = event.target.value;
     const mood = moods.find((m) => m.name === moodName);
     setSelectedMood(mood);
+    localStorage.setItem("selectedMood", JSON.stringify(mood));
+    window.dispatchEvent(new Event("storage"));
   };
 
   return (
@@ -34,11 +38,12 @@ const Mood = () => {
           </option>
         ))}
       </select>
-
       {selectedMood && (
         <div className="mood-display">
           <span className="mood-emoji">{selectedMood.emoji}</span>
-          <p className="mood-text">You are feeling <strong>{selectedMood.name}</strong> today.</p>
+          <p className="mood-text">
+            You are feeling <strong>{selectedMood.name}</strong> today.
+          </p>
         </div>
       )}
     </div>
@@ -46,4 +51,3 @@ const Mood = () => {
 };
 
 export default Mood;
-
