@@ -1,0 +1,52 @@
+.tracker-container {
+    max-width: 600px;
+    margin: 85px auto;
+    padding: 25px;
+    background-color: #2F3020;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: white;
+}
+
+.tracker-heading {
+    color: #D38770;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.no-data {
+    font-size: 1rem;
+    color: #b6baa5;
+}
+
+.tracker-entry {
+    background-color: #3E4030;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.tracker-entry h2 {
+    font-size: 1.3rem;
+    color: #E0E5C5;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #b6baa5;
+    padding-bottom: 5px;
+}
+
+.tracker-entry p {
+    font-size: 1rem;
+    margin: 5px 0;
+    color: #b6baa5;
+}
+
+.tracker-entry strong {
+    color: #D38770;
+}
+
+.tracker-entry p:last-child {
+    margin-bottom: 0;
+}

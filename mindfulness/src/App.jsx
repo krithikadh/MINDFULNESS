@@ -8,6 +8,7 @@ import Navbar from "./components/FunctionalComponents/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "./components/FunctionalComponents/Signup";
 import Login from "./components/FunctionalComponents/Login";
+import TrackReport from "./components/FunctionalComponents/TrackReport";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/trackreport" element={<TrackReport/>}/>
         </Routes>
       </BrowserRouter>
     </main>

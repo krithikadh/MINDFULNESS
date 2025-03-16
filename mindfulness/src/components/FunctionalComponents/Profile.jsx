@@ -9,7 +9,7 @@ const Profile = () => {
       <div className="profile-options">
         <Link to="/login" className="profile-button">Login</Link>
         <Link to="/signup" className="profile-button">Signup</Link>
-        <Link to="/track-report" className="profile-button">Track Report</Link>
+        <Link to="/trackreport" className="profile-button">Track Report</Link>
       </div>
     </div>
   );
