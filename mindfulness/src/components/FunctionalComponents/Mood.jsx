@@ -29,7 +29,6 @@ const Mood = () => {
   return (
     <div className="mood-container">
       <h1 className="heading">How are you feeling today?</h1>
-
       <select className="mood-dropdown" onChange={handleMoodChange} defaultValue="">
         <option value="" disabled>Select a Mood</option>
         {moods.map((mood) => (

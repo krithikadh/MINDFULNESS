@@ -40,7 +40,6 @@ function Signup() {
           onChange={(e) => setName(e.target.value)}
           required
         />
-
         <label>Email:</label>
         <input
           type="email"
@@ -48,7 +47,6 @@ function Signup() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-
         <label>Password:</label>
         <input
           type="password"
@@ -56,7 +54,6 @@ function Signup() {
           onChange={(e) => setPass(e.target.value)}
           required
         />
-
         <label>Phone Number:</label>
         <input
           type="tel"
@@ -64,10 +61,8 @@ function Signup() {
           onChange={(e) => setPN(e.target.value)}
           required
         />
-
         <button type="submit">Sign Up</button>
       </form>
-
       <p>
         Already have an account? <Link to="/login">Login</Link>
       </p>

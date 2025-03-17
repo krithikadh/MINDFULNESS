@@ -25,13 +25,10 @@ function Login() {
       <form className="auth-form" onSubmit={handleLogin}>
         <label>Email:</label>
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-
         <label>Password:</label>
         <input type="password" value={password} onChange={(e) => setPass(e.target.value)} required />
-
         <button type="submit">Login</button>
       </form>
-
       <p>New User? <Link to="/signup">Signup</Link></p>
     </div>
   );

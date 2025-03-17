@@ -16,7 +16,6 @@ const TrackReport = () => {
   return (
     <div className="tracker-container">
       <h1 className="tracker-heading">Daily Tracker Report</h1>
-
       {entries.length === 0 ? (
         <p className="no-data">No data available yet.</p>
       ) : (
