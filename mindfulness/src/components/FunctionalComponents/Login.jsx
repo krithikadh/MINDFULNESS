@@ -10,12 +10,16 @@ function Login() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    try {
-      const res = await axios.post("https://mindfulness-9lmh.onrender.com/login", { email, password });
-      alert(res.data.message);
-      if (res.data.isLoggedIn) navigate("/");
-    } catch (error) {
-      alert("Login failed. Please check your credentials.");
+    var req = await axios.post("https://mindfulness-9lmh.onrender.com/login", {
+      email,
+      password,
+    });
+    var isLoginSuccessful = req.data.isLoggedIn;
+    if (isLoginSuccessful) {
+      alert(req.data.message);
+      navigate("/");
+    } else {
+      alert(req.data.message);
     }
   };
 

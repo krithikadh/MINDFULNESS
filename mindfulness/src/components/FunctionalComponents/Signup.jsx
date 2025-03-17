@@ -12,20 +12,22 @@ function Signup() {
 
   const handleSignup = async (event) => {
     event.preventDefault();
-    try {
-      const res = await axios.post(
-        "https://mindfulness-9lmh.onrender.com/signup",
-        {
-          name,
-          email,
-          password,
-          phoneNumber,
-        }
-      );
-      alert(res.data.message);
-      if (res.data.isSignUp) navigate("/login");
-    } catch (error) {
-      alert("Signup failed. Please try again.");
+    const req = await axios.post(
+      "https://mindfulness-9lmh.onrender.com/signups",
+      {
+        name,
+        email,
+        password,
+        phoneNumber,
+      }
+    );
+    const message = req.data.message;
+    const isSignup = req.data.isSignUp;
+    if (isSignup) {
+      alert(message);
+      navigate("/login");
+    } else {
+      alert(message);
     }
   };
 
