@@ -15,10 +15,10 @@ function Signup() {
     const req = await axios.post(
       "https://mindfulness-9lmh.onrender.com/signups",
       {
-        name,
-        email,
-        password,
-        phoneNumber,
+        name :name,
+        email:email,
+        password:password,
+        phoneNumber:phoneNumber,
       }
     );
     const message = req.data.message;
@@ -38,6 +38,7 @@ function Signup() {
         <label>Name:</label>
         <input
           type="text"
+          id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
@@ -45,6 +46,7 @@ function Signup() {
         <label>Email:</label>
         <input
           type="email"
+          id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -52,13 +54,15 @@ function Signup() {
         <label>Password:</label>
         <input
           type="password"
+          id="password"
           value={password}
           onChange={(e) => setPass(e.target.value)}
           required
         />
         <label>Phone Number:</label>
         <input
-          type="tel"
+          type="number"
+          id="phoneNumber"
           value={phoneNumber}
           onChange={(e) => setPN(e.target.value)}
           required
