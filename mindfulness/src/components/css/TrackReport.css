@@ -50,3 +50,22 @@
 .tracker-entry p:last-child {
     margin-bottom: 0;
 }
+
+.delete-button {
+    background-color: #D38770;
+    color: white;
+    padding: 6px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    top: 15px;
+    right: 15px;
+}
+
+.delete-button:hover {
+    background-color: #B36B5C;
+    transform: scale(1.05);
+}
+

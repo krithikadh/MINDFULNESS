@@ -6,12 +6,18 @@ const TrackReport = () => {
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("trackerEntries")) || [];
-    const formattedData = storedData.map(entry => ({
+    const formattedData = storedData.map((entry) => ({
       ...entry,
-      date: new Date(entry.date).toLocaleDateString("en-GB")
+      date: new Date(entry.date).toLocaleDateString("en-GB"),
     }));
     setEntries(formattedData);
   }, []);
+
+  const handleDelete = (index) => {
+    const updatedEntries = entries.filter((_, i) => i !== index);
+    setEntries(updatedEntries);
+    localStorage.setItem("trackerEntries", JSON.stringify(updatedEntries));
+  };
 
   return (
     <div className="tracker-container">
@@ -26,6 +32,7 @@ const TrackReport = () => {
             <p><strong>Sleep:</strong> {entry.sleep} hrs</p>
             <p><strong>Mood:</strong> {entry.moodEmoji}</p>
             <p><strong>Journal:</strong> {entry.journal || "No journal entry"}</p>
+            <button className="delete-button" onClick={() => handleDelete(index)}>Delete</button>
           </div>
         ))
       )}

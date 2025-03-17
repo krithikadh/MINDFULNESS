@@ -1,23 +1,34 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import for navigation
+import React, { useState, useEffect } from "react";
 import "../css/Journal.css";
 
 const Journal = () => {
   const [entry, setEntry] = useState("");
   const [entries, setEntries] = useState([]);
-  const navigate = useNavigate(); // Hook for navigation
 
-  // Check if user is logged in (assuming token exists in localStorage)
-  const isLoggedIn = !!localStorage.getItem("authToken");
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem("trackerEntries")) || [];
+    setEntries(storedData);
+  }, []);
 
   const handlePost = () => {
-    if (!isLoggedIn) {
-      navigate("/signup"); // Redirect to signup if not logged in
-      return;
-    }
-
     if (entry.trim() !== "") {
-      setEntries([entry, ...entries]);
+      const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+      const meditation = localStorage.getItem("meditationMinutes") || "0";
+      const sleep = localStorage.getItem("sleepHours") || "0";
+      const mood = JSON.parse(localStorage.getItem("selectedMood")) || { emoji: "-", name: "Neutral" };
+
+      const newEntry = {
+        date: today,
+        meditation,
+        sleep,
+        moodEmoji: mood.emoji,
+        journal: entry
+      };
+
+      const updatedEntries = [newEntry, ...entries];
+      localStorage.setItem("trackerEntries", JSON.stringify(updatedEntries));
+      setEntries(updatedEntries);
+
       setEntry("");
     }
   };
@@ -30,20 +41,12 @@ const Journal = () => {
         className="journal-input"
         value={entry}
         onChange={(e) => setEntry(e.target.value)}
-        placeholder="You can make multiple entries"
+        placeholder="Write your journal entry..."
       ></textarea>
 
       <button className="post-button" onClick={handlePost}>
         Save
       </button>
-
-      <div className="journal-entries">
-        {entries.map((entry, index) => (
-          <div key={index} className="journal-entry">
-            <p>{entry}</p>
-          </div>
-        ))}
-      </div>
     </div>
   );
 };
