@@ -17,7 +17,7 @@ function Login() {
     var isLoginSuccessful = req.data.isLoggedIn;
     if (isLoginSuccessful) {
       alert(req.data.message);
-      navigate("/");
+      navigate("/dateandday");
     } else {
       alert(req.data.message);
     }

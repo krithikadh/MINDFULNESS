@@ -25,7 +25,7 @@ function Signup() {
     const isSignup = req.data.isSignUp;
     if (isSignup) {
       alert(message);
-      navigate("/login");
+      navigate("/");
     } else {
       alert(message);
     }
@@ -70,7 +70,7 @@ function Signup() {
         <button type="submit">Sign Up</button>
       </form>
       <p>
-        Already have an account? <Link to="/login">Login</Link>
+        Already have an account? <Link to="/">Login</Link>
       </p>
     </div>
   );

@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className="bottom-navbar">
       <ul className="nav-links">
-        <li><Link to="/"><FaCalendarAlt className="icon" /><span>Day</span></Link></li>
+        <li><Link to="/dateandday"><FaCalendarAlt className="icon" /><span>Day</span></Link></li>
         <li><Link to="/meditation"><FaBrain className="icon" /><span>Meditation</span></Link></li>
         <li><Link to="/sleep"><FaBed className="icon" /><span>Sleep</span></Link></li>
         <li><Link to="/mood"><FaSmile className="icon" /><span>Mood</span></Link></li>

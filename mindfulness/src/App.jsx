@@ -16,14 +16,15 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<DateAndDay />} />
+        <Route path="/" element={<Login />} />
+          <Route path="/dateandday" element={<DateAndDay />} />
           <Route path="/meditation" element={<Meditation />} />
           <Route path="/mood" element={<Mood />} />
           <Route path="/sleep" element={<Sleep />} />
           <Route path="/journal" element={<Journal />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+          
           <Route path="/trackreport" element={<TrackReport/>}/>
         </Routes>
       </BrowserRouter>

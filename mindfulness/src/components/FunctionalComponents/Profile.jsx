@@ -1,15 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../css/Profile.css";
 
 const Profile = () => {
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    navigate("/");
+  };
+
   return (
     <div className="profile-container">
       <h1 className="prof">Profile</h1>
       <div className="profile-options">
-        <Link to="/login" className="profile-button">Login</Link>
-        <Link to="/signup" className="profile-button">Signup</Link>
         <Link to="/trackreport" className="profile-button">Track Report</Link>
+        <button className="profile-button signout-button" onClick={handleSignOut}>Sign Out</button>
       </div>
     </div>
   );
