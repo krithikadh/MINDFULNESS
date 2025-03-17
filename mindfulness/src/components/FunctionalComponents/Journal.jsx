@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../css/Journal.css";
+import { Link } from "react-router-dom";
 
 const Journal = () => {
   const [entry, setEntry] = useState("");
@@ -45,7 +46,9 @@ const Journal = () => {
       ></textarea>
 
       <button className="post-button" onClick={handlePost}>
+        <Link to="/trackreport">
         Save
+        </Link>
       </button>
     </div>
   );
